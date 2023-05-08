@@ -1,47 +1,10 @@
 import React from 'react'
 import { useLoaderData } from 'react-router-dom';
 import Cliente from '../components/Cliente';
+import { getClients } from '../data/clientes';
 
 export function loader(){
-  const clients = [
-    {
-        id: 1,
-        name: 'Juan',
-        phone: 102013313,
-        email: "juan@juan.com",
-        enterprise: 'Codigo Con Juan'
-    },
-    {
-        id: 2,
-        name: 'Karen',
-        phone: 138198313,
-        email: "karen@juan.com",
-        enterprise: 'Codigo Con Juan'
-    },
-    {
-        id: 3,
-        name: 'Josue',
-        phone: 31983913,
-        email: "josue@juan.com",
-        enterprise: 'Codigo Con Juan'
-    },
-    {
-        id: 4,
-        name: 'Miguel',
-        phone: 319381983,
-        email: "miguel@juan.com",
-        enterprise: 'Codigo Con Juan'
-    },
-    {
-        id: 5,
-        name: 'Pedro',
-        phone: 1398198938,
-        email: "pedro@juan.com",
-        enterprise: 'Codigo Con Juan'
-    },
-  ];
-
-  return clients;
+  return getClients();
 }
 
 const Index = () => {

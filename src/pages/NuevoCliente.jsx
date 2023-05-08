@@ -1,7 +1,17 @@
 import React from 'react'
-import { useNavigate, Form, useActionData } from 'react-router-dom'
+import { useNavigate, Form, useActionData, redirect } from 'react-router-dom'
 import Formulario from '../components/Formulario';
 import Error from '../components/Error';
+import { addClient } from '../data/clientes';
+
+/* ROUTING: 
+  Todo esto viene de la librería react-router-dom
+  -> Cuando se utilizan links <a><a>, es mejor usar el componente <Link to=""></Link>
+  -> Cuando se utiliza un button onClick, es mejor usar useNavigate()
+  -> Cuando se usan actions y loaders, es mejor usar redirect();
+*/
+
+
 
 export async function action({request}) {
   const formData = await request.formData()
@@ -28,15 +38,15 @@ export async function action({request}) {
     return errors;
   }
 
-  return {ok: true};
+  await addClient(data);
+
+  return redirect('/');
 }
 
 const NuevoCliente = () => {
 
   const errors = useActionData();
   const navigate = useNavigate();
-
-  console.log(errors);
 
   return (
     <>
