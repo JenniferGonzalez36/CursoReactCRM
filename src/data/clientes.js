@@ -4,6 +4,12 @@ export async function getClients(){
     return result;
 }
 
+export async function getClient(id){
+    const answer = await fetch(`${import.meta.env.VITE_API_URL}/${id}`);
+    const result = await answer.json();
+    return result;
+}
+
 export async function addClient(data){
     try{
         const answer = await fetch(import.meta.env.VITE_API_URL, {
@@ -12,6 +18,32 @@ export async function addClient(data){
             headers: {
                 'Content-Type': 'application/json'
             }
+        });
+        await answer.json();
+    } catch (e){
+        console.log(e);
+    }
+}
+
+export async function updateClient(id, data){
+    try{
+        const answer = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        await answer.json();
+    } catch (e){
+        console.log(e);
+    }
+}
+
+export async function deleteClient(id){
+    try{
+        const answer = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+            method: 'DELETE'
         });
         await answer.json();
     } catch (e){
